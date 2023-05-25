@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/logic/cubits/cubit/weather_cubit.dart';
 import 'package:weather_app/logic/repositories/weather_repository.dart';
 import 'package:weather_app/logic/services/https/weather_api_services.dart';
 
@@ -9,40 +11,36 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-    _getWeatherData();
-  }
-
-  void _getWeatherData() async {
-    final weatherRepo = WeatherRepository(
-      weatherApiServices: WeatherApiServices(
-        client: Client(),
-      ),
-    );
-    final weather = await weatherRepo.getWeather('chiroqchi');
-    print(weather.temperature);
-    print(weather.main);
-  }
+  void _getWeatherData() async {}
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return RepositoryProvider(
+      create: (context) => WeatherRepository(
+        weatherApiServices: WeatherApiServices(
+          client: Client(),
+        ),
       ),
-      home: HomeScreen(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: ((context) => WeatherCubit(
+                  weatherRepository: context.read<WeatherRepository>(),
+                )),
+          ),
+        ],
+        child: MaterialApp(
+          title: 'Weather App',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: HomeScreen(),
+        ),
+      ),
     );
   }
 }
