@@ -4,6 +4,7 @@ class Weather {
   final String descrip;
   final String icon;
   final double temperature;
+  final String city;
 
   Weather({
     required this.id,
@@ -11,5 +12,6 @@ class Weather {
     required this.descrip,
     required this.icon,
     required this.temperature,
+    required this.city,
   });
 }
