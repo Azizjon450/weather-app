@@ -13,6 +13,7 @@ class WeatherCubit extends Cubit<WeatherState> {
     emit(WeatherLoading());
     try {
       final weather = await weatherRepository.getWeather(city);
+      print(weather.main);
       emit(WeatherLoaded(weather));     
     } catch (e) {
       emit(WeatherError(e.toString()));
