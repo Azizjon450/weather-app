@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:weather_app/data/constants/constants.dart';
 import 'package:weather_app/data/models/weather.dart';
-import 'package:weather_app/logic/services/weather_exeptions.dart';
+import 'package:weather_app/logic/services/exeptions/weather_exeptions.dart';
 
 class WeatherApiServices {
   final http.Client client;
