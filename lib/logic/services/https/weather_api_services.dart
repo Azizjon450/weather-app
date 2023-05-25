@@ -27,9 +27,9 @@ class WeatherApiServices {
       final mainData = data['main'];
 
       final Weather weather = Weather(
-        id: weatherdata['id'],
+        id: weatherdata['id'].toString(),
         main: weatherdata['main'],
-        descrip: weatherdata['descrip'],
+        descrip: weatherdata['description'],
         icon: weatherdata['icon'],
         temperature: double.parse(mainData['temp'].toString()),
         city: city,
