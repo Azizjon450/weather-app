@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/logic/cubits/cubit/weather_cubit.dart';
 import 'package:weather_app/logic/repositories/weather_repository.dart';
 import 'package:weather_app/logic/services/https/weather_api_services.dart';
+import 'package:weather_app/presentations/screens/search_screen.dart';
 
 import 'presentations/screens/home_screen.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
                 )),
           ),
         ],
-        child: const MaterialApp(
+        child:  MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Weather App',
           //theme: ThemeData(
@@ -40,6 +41,9 @@ class MyApp extends StatelessWidget {
             //useMaterial3: true,
           //),
           home: HomeScreen(),
+          routes: {
+            SearchScreen.routename: (ctx) => SearchScreen(),
+          } 
         ),
       ),
     );
