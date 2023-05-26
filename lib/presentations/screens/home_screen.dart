@@ -47,8 +47,12 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         }
         if (state is WeatherLoaded) {
-          return Center(
-            child: Text(state.weather.main),
+          return Stack(
+            children: [
+              Center(
+                child: Text(state.weather.main),
+              ),
+            ],
           );
         }
         return Container();
