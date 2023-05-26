@@ -32,13 +32,13 @@ class MyApp extends StatelessWidget {
                 )),
           ),
         ],
-        child: MaterialApp(
+        child: const MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Weather App',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
+          //theme: ThemeData(
+            //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            //useMaterial3: true,
+          //),
           home: HomeScreen(),
         ),
       ),

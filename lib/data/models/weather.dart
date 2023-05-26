@@ -5,6 +5,7 @@ class Weather {
   final String icon;
   final double temperature;
   final String city;
+  final DateTime time;
 
   Weather({
     required this.id,
@@ -13,5 +14,6 @@ class Weather {
     required this.icon,
     required this.temperature,
     required this.city,
+    required this.time,
   });
 }

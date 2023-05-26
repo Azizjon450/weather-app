@@ -33,6 +33,7 @@ class WeatherApiServices {
         icon: weatherdata['icon'],
         temperature: double.parse(mainData['temp'].toString()),
         city: city,
+        time: DateTime.now(),
       );
       return weather;
     } catch (e) {
