@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class SearchScreen extends StatelessWidget {
-  SearchScreen({super.key});
+  SearchScreen({Key? key}) : super(key: key);
 
-  static const String routename = '/search-city';
-  
+  static const String routeName = '/search-city';
+
   final _formKey = GlobalKey<FormState>();
   String? _city;
 
@@ -20,7 +20,7 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Saerch screen'),
+        title: const Text('Search screen'),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -44,7 +44,6 @@ class SearchScreen extends StatelessWidget {
                 },
                 onSaved: (value) {
                   _city = value!;
-                  Navigator.of(context).pop(_city);
                 },
               ),
               const SizedBox(

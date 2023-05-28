@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     leading: IconButton(
                       onPressed: () async {
                         final _city = await Navigator.of(context)
-                            .pushNamed(SearchScreen.routename);
+                            .pushNamed(SearchScreen.routeName);
                         if (_city != null) {
                           _getWeather(_city as String);
                         }

@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           //),
           home: HomeScreen(),
           routes: {
-            SearchScreen.routename: (ctx) => SearchScreen(),
+            SearchScreen.routeName: (ctx) => SearchScreen(),
           } 
         ),
       ),
