@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/logic/cubits/cubit/weather_cubit.dart';
+import 'package:weather_app/logic/cubits/weather/weather_cubit.dart';
 import 'package:weather_app/logic/repositories/weather_repository.dart';
 import 'package:weather_app/logic/services/https/weather_api_services.dart';
 import 'package:weather_app/presentations/screens/search_screen.dart';
+import 'package:weather_app/presentations/screens/settings_screen.dart';
 
 import 'presentations/screens/home_screen.dart';
 
@@ -43,6 +44,7 @@ class MyApp extends StatelessWidget {
           home: HomeScreen(),
           routes: {
             SearchScreen.routeName: (ctx) => SearchScreen(),
+            SettingsScreen.routename: (ctx) => const SettingsScreen(),
           } 
         ),
       ),

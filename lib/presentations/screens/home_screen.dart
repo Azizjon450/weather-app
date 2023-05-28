@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:weather_app/presentations/screens/search_screen.dart';
 import 'package:weather_app/presentations/witgets/information_weather.dart';
+import 'package:weather_app/presentations/witgets/weather_menu.dart';
 
-import '../../logic/cubits/cubit/weather_cubit.dart';
+import '../../logic/cubits/weather/weather_cubit.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,7 +14,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -90,17 +89,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   AppBar(
+                    leadingWidth: double.infinity,
                     backgroundColor: Colors.transparent,
-                    leading: IconButton(
-                      onPressed: () async {
-                        final _city = await Navigator.of(context)
-                            .pushNamed(SearchScreen.routeName);
-                        if (_city != null) {
-                          _getWeather(_city as String);
-                        }
-                      },
-                      icon: const Icon(Icons.search),
-                    ),
+                    leading: WeatherMenu(getWeather: _getWeather, weatherMenu: (String city) {},),
                     elevation: 0,
                   ),
                   InformationWeather(
