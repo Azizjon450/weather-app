@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../logic/cubits/settings/settings_cubit.dart';
 import '../../data/models/weather.dart';
 import '../../helpers/extensions/string_extensions.dart';
 
-class InformationWeather extends StatelessWidget {
+class InformationWeather extends StatefulWidget {
   const InformationWeather({
     super.key,
     required this.weather,
@@ -14,12 +16,27 @@ class InformationWeather extends StatelessWidget {
   final String formattedDate;
 
   @override
+  State<InformationWeather> createState() => _InformationWeatherState();
+}
+
+class _InformationWeatherState extends State<InformationWeather> {
+  String _showTemperature(double temp) {
+    final tempUnit = context.watch<SettingsCubit>().state.tempUnit;
+
+    if(tempUnit == TempUnits.farenheit) {
+      return '${(temp * 9 / 5 + 32).toStringAsFixed(0)}\u2109';
+    }else{
+      return '${temp.toStringAsFixed(0)}\u2103';
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Text(
-          weather.city.capitalizeString(),
+          widget.weather.city.capitalizeString(),
           style: const TextStyle(
             fontSize: 50,
             color: Colors.white,
@@ -27,7 +44,7 @@ class InformationWeather extends StatelessWidget {
           ),
         ),
         Text(
-          formattedDate,
+          widget.formattedDate,
           style: const TextStyle(
             fontSize: 20,
             color: Colors.white,
@@ -42,7 +59,7 @@ class InformationWeather extends StatelessWidget {
           width: 300,
         ),
         Text(
-          '${weather.temperature.toStringAsFixed(0)}\u2103',
+          _showTemperature(widget.weather.temperature),
           style: const TextStyle(
             fontSize: 70,
             color: Colors.white,
@@ -52,9 +69,9 @@ class InformationWeather extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Image.network(
-                'https://openweathermap.org/img/wn/${weather.icon}@2x.png'),
+                'https://openweathermap.org/img/wn/${widget.weather.icon}@2x.png'),
             Text(
-              weather.main,
+              widget.weather.main,
               style: const TextStyle(
                 fontSize: 25,
                 color: Colors.white,
@@ -63,7 +80,7 @@ class InformationWeather extends StatelessWidget {
           ],
         ),
         Text(
-          weather.descrip,
+          widget.weather.descrip,
           style: const TextStyle(
             fontSize: 15,
             color: Colors.white,

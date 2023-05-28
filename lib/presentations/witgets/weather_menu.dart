@@ -22,13 +22,20 @@ class WeatherMenu extends StatelessWidget {
               getWeather(_city as String);
             }
           },
-          icon: const Icon(Icons.search),
+          icon: const Icon(
+            Icons.search,
+            color: Colors.white,
+          ),
         ),
         IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(SettingsScreen.routename);
-            },
-            icon: const Icon(Icons.settings)),
+          onPressed: () {
+            Navigator.of(context).pushNamed(SettingsScreen.routename);
+          },
+          icon: const Icon(
+            Icons.settings,
+            color: Colors.white,
+          ),
+        ),
       ],
     );
   }
